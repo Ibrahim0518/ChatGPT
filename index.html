@@ -1,189 +1,891 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supermarket Homepage</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
+    <title>Kubra - Advanced Navbar</title>
+    <link rel="stylesheet" href="feature.css">
+    <link rel="stylesheet" href="newProduct.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-body {
-            background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #222222);
-            color: white;
-            min-height: 100vh;
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding-top: 70px;
+            /* Prevent content from hiding under navbar */
+        }
+
+        body {
+            background: linear-gradient(135deg, #f6f9fc, #e3f2fd);
+            color: #333;
+            /* min-height: 100vh;
             display: flex;
             justify-content: center;
+            align-items: center; */
+            /* flex-direction: column; */
+        }
+
+        /* Navbar Styling */
+        nav {
+            background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+            color: white;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            flex-direction: column;
-        }
-        .navbar-brand {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff5733;
-        }
-        .nav-link {
-            font-size: 18px;
-            color: #333;
-        }
-        .nav-link:hover {
-            color: #ff5733;
-        }
-        .search-bar {
+            padding: 15px 30px;
+            position: fixed;
             width: 100%;
-            max-width: 300px;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
-        .btn-primary {
-            background-color: #ff5733;
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu li {
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: 0.3s ease-in-out;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            /* Space between text and arrow */
+        }
+
+        .menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Dropdown Arrow */
+        .menu li .dropdown_icon::after {
+            content: "▼";
+            /* Dropdown arrow */
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+
+        /* When dropdown is active, rotate arrow */
+        .menu li.show-dropdown .dropdown_icon::after {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 180px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .menu li.show-dropdown .dropdown {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown li {
+            display: block;
+            padding: 10px;
+        }
+
+        .dropdown li a {
+            font-size: 16px;
+            color: white;
+            display: block;
+        }
+
+        .dropdown li a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+
+        /* Search Bar */
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 5px 10px;
+        }
+
+        .search-box input {
             border: none;
+            outline: none;
+            background: transparent;
+            padding: 8px;
+            color: white;
+            font-size: 16px;
         }
-        .btn-primary:hover {
-            background-color: #e64a19;
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
-        .icon {
-            font-size: 22px;
-            color: #ff5733;
-            margin-left: 15px;
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
         }
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 10px;
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
         }
-        @media (max-width: 768px) {
-            .search-bar {
+
+        @media screen and (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #8E2DE2, #4A00E0);
+                text-align: center;
+                padding: 0;
+                box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu li {
+                padding: 10px 0;
                 width: 100%;
             }
-            .carousel-caption {
-                font-size: 14px;
+
+            .dropdown {
+                display: none;
+                position: static;
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transition: none;
+            }
+
+            .menu li .dropdown {
+                display: none;
+            }
+
+            .menu li.show-dropdown .dropdown {
+                display: block;
+            }
+
+            .dropdown li {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .dropdown li a {
                 padding: 10px;
+                display: block;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .search-box {
+                display: none;
+            }
+        }
+
+
+        /* Swiper Container */
+        .swiper {
+            width: 100%;
+            max-width: 1366px;
+            height: 60vh;
+            margin: 0px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        /* Custom Slide Backgrounds */
+        .slide1 {
+            background: url("New folder/banner1.png") center/cover no-repeat;
+        }
+
+        .slide2 {
+            background: url("New folder/banner2.png") center/cover no-repeat;
+        }
+
+        .slide3 {
+            background: url("New folder/banner3.png") center/cover no-repeat;
+        }
+
+        .slide4 {
+            background: url("New folder/banner4.png") center/cover no-repeat;
+        }
+
+        /* Linear Gradient Backgrounds */
+        /* .slide1 {
+            background: linear-gradient(45deg, #ff6a00, #ee0979);
+        }
+
+        .slide2 {
+            background: linear-gradient(45deg, #00c9ff, #92fe9d);
+        }
+
+        .slide3 {
+            background: linear-gradient(45deg, #ff0099, #493240);
+        }
+
+        .slide4 {
+            background: linear-gradient(45deg, #1f4037, #99f2c8);
+        } */
+
+        /* Navigation Buttons */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+            font-size: 22px;
+        }
+
+        /* Pagination */
+        .swiper-pagination-bullet {
+            background: white;
+            opacity: 0.6;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #ff6a00;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .swiper {
+                height: 50vh;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .swiper {
+                height: 40vh;
+            }
+        }
+
+
+
+        .offer-banner {
+            background: linear-gradient(90deg, #ff9800, #ff5722);
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            border-radius: 5px;
+            max-width: 90%;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .offer-banner span {
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            color: white;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+
+        /* card categories */
+
+        .category-container {
+            max-width: 90%;
+            padding: 20px 0;
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none;
+            /* Hide scrollbar for IE and Edge */
+        }
+
+        .category-container::-webkit-scrollbar {
+            display: none;
+            /* Hide scrollbar for Chrome, Safari */
+        }
+
+        .category-card {
+            flex: 0 0 auto;
+            width: 180px;
+            height: 250px;
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        .category-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .category-card:hover .category-name {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+
+        /* special deals and Ofders */
+
+        banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .offer {
+            flex: 1;
+            font-size: 24px;
+            font-weight: bold;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .timer {
+            flex: 1;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .timer {
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pulsing Effect for Timer */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
             }
         }
     </style>
 </head>
+
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-light shadow">
+    <nav>
+        <div class="logo">Kubra</div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li class="dropdown-menu">
+                <a href="#" class="dropdown_icon" onclick="toggleDropdown(event)">Categories</a>
+                <ul class="dropdown">
+                    <li><a href="#">Clothing</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Beauty</a></li>
+                    <li><a href="#">Footwear</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button>🔍</button>
+        </div>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector(".menu").classList.toggle("active");
+        }
+
+        function toggleDropdown(event) {
+            event.preventDefault();
+            let parentLi = event.target.closest("li");
+            parentLi.classList.toggle("show-dropdown");
+        }
+    </script>
+
+
+    <!-- Swiper Carousel -->
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide1">
+                <!-- Exclusive Fashion Deals -->
+            </div>
+            <div class="swiper-slide slide2">
+                <!-- Trending Accessories -->
+            </div>
+            <div class="swiper-slide slide3">
+                <!-- New Arrival - Footwear -->
+            </div>
+            <div class="swiper-slide slide4">
+                <!-- Special Beauty Collection -->
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- Navigation Buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <!-- Swiper.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper('.swiper', {
+            loop: true,
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            effect: "fade",
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        });
+    </script>
+    <div class="offer-banner">
+        Limited Time Offer! Get 50% Off on Your First Purchase <span>Use Code: FIRST50</span>
+        <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
+    </div>
+    <!-- 
+    <div class="category-container">
+        <div class="category-card">
+            <img src="/img/ottawa.jp" alt="Category 1">
+            <div class="category-name">Fashion</div>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/180x150" alt="Category 2">
+            <div class="category-name">Electronics</div>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/180x150" alt="Category 3">
+            <div class="category-name">Home & Kitchen</div>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/180x150" alt="Category 4">
+            <div class="category-name">Beauty & Health</div>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/180x150" alt="Category 5">
+            <div class="category-name">Sports</div>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/180x150" alt="Category 6">
+            <div class="category-name">Toys</div>
+        </div>
+    </div> -->
+    <!-- 
+
+    <div class="banner">
+        <div class="offer">🔥 Limited Time Offer: 50% Off on All Products! 🔥</div>
+        <div class="timer">⏳ Offer ends in: <span id="countdown"></span></div>
+    </div>
+
+    <script>
+        function startCountdown(durationInSeconds) {
+            let timer = durationInSeconds;
+            const countdownElement = document.getElementById("countdown");
+
+            function updateTimer() {
+                let minutes = Math.floor(timer / 60);
+                let seconds = timer % 60;
+                countdownElement.textContent = `${minutes}m ${seconds}s`;
+                if (timer > 0) {
+                    timer--;
+                    setTimeout(updateTimer, 1000);
+                } else {
+                    countdownElement.textContent = "Offer Expired!";
+                }
+            }
+            updateTimer();
+        }
+
+        startCountdown(600); // 10-minute countdown
+    </script> -->
+
+
+    <!-- <div class="card-container">
+        <div class="card">
+            <img src="images/woman-9450191_1280.jpg" alt="Category 1">
+            <h3>Fashion & Clothing</h3>
+        </div>
+        <div class="card">
+            <img src="images/woman-9450191_1280.jpg" alt="Category 2">
+            <h3>Beauty & personal Care</h3>
+        </div>
+        <div class="card">
+            <img src="images/woman-9450191_1280.jpg" alt="Category 3">
+            <h3>Jawelry & Accessories</h3>
+        </div>
+        <div class="card">
+            <img src="images/woman-9450191_1280.jpg" alt="Category 3">
+            <h3>Footwear</h3>
+        </div>
+    </div> -->
+
+
+
     <div class="container">
-        <a class="navbar-brand" href="#">SuperMarket</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Deals</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-            </ul>
-            <form class="d-flex me-lg-3 my-2 my-lg-0">
-                <input class="form-control search-bar" type="search" placeholder="Search...">
-                <button class="btn btn-primary ms-2" type="submit">Search</button>
-            </form>
-            <div class="d-flex align-items-center">
-                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
-                <a href="#" class="icon"><i class="fas fa-user"></i></a>
-                <a href="#" class="btn btn-primary ms-3">Login / Signup</a>
+        <h2>🔥 Featured Products</h2>
+        <div class="product-list">
+            <div class="product">
+                <div class="icons">
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <img src="New folder/HeadPhone.png" alt="Product 1">
+                <h3>Wireless Headphones</h3>
+                <p>Premium quality sound experience.</p>
+                <div class="price">$99.99</div>
+                <a href="#" class="btn">Buy Now</a>
             </div>
-        </div>
-    </div>
-</nav>
 
-<!-- Carousel -->
-<div id="supermarketCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#supermarketCarousel" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#supermarketCarousel" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#supermarketCarousel" data-bs-slide-to="2"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="images/banner1.jpg" class="d-block w-100" alt="Supermarket">
-            <div class="carousel-caption">
-                <h3>Fresh Groceries Every Day</h3>
-                <p>Get the best quality products at the best prices.</p>
-                <a href="#" class="btn btn-primary">Shop Now</a>
+            <div class="product">
+                <div class="icons">
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <img src="New folder/smartwatch.png" alt="Product 2">
+                <h3>Smartwatch Series 6</h3>
+                <p>Track your fitness and health.</p>
+                <div class="price">$199.99</div>
+                <a href="#" class="btn">Buy Now</a>
             </div>
-        </div>
-        <div class="carousel-item">
-            <img src="images/banner1.jpg" class="d-block w-100" alt="Fresh Produce">
-            <div class="carousel-caption">
-                <h3>Organic & Fresh Produce</h3>
-                <p>Farm-fresh vegetables and fruits available now.</p>
-                <a href="#" class="btn btn-primary">Explore More</a>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="images/banner1.jpg" class="d-block w-100" alt="Supermarket Deals">
-            <div class="carousel-caption">
-                <h3>Exclusive Discounts & Offers</h3>
-                <p>Save big on your daily essentials!</p>
-                <a href="#" class="btn btn-primary">Grab Deals</a>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#supermarketCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#supermarketCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
-</div>
 
-<!-- Card Section -->
-<div class="product-container flex_container">
-    <div class="product-card">
-        <img src="images/produc1.jpg" alt="Product">
-        <h4>Product 1</h4>
-        <p>$10.00</p>
-    </div>
-    <div class="product-card">
-        <img src="images/produc1.jpg" alt="Product">
-        <h4>Product 2</h4>
-        <p>$12.00</p>
-    </div>
-    <div class="product-card">
-        <img src="images/produc1.jpg" alt="Product">
-        <h4>Product 3</h4>
-        <p>$15.00</p>
-    </div>
-    <div class="product-card">
-        <img src="images/produc1.jpg" alt="Product">
-        <h4>Product 3</h4>
-        <p>$15.00</p>
-    </div>
-    <div class="product-card">
-        <img src="images/produc1.jpg" alt="Product">
-        <h4>Product 3</h4>
-        <p>$15.00</p>
-    </div>
-    <div class="product-card">
-        <img src="images/produc1.jpg" alt="Product">
-        <h4>Product 3</h4>
-        <p>$15.00</p>
-    </div>
-    <div class="product-card">
-        <img src="images/produc1.jpg" alt="Product">
-        <h4>Product 3</h4>
-        <p>$15.00</p>
-    </div>
-    <div class="product-card">
-        <img src="images/produc1.jpg" alt="Product">
-        <h4>Product 3</h4>
-        <p>$15.00</p>
-    </div>
-    <div class="product-card">
-        <img src="images/produc1.jpg" alt="Product">
-        <h4>Product 3</h4>
-        <p>$15.00</p>
-    </div>
-</div>
-<!-- Card Section  -->
+            <div class="product">
+                <div class="icons">
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <img src="New folder/Gamming laptop.png" alt="Product 3">
+                <h3>Gaming Laptop</h3>
+                <p>Powerful performance for gamers.</p>
+                <div class="price">$999.99</div>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="product">
+                <div class="icons">
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <img src="New folder/Wireless air.png" alt="Product 4">
+                <h3>Wireless Earbuds</h3>
+                <p>High-quality audio with deep bass.</p>
+                <div class="price">$49.99</div>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🆕 New Arrivals</h2>
+        <div class="product-list">
+            <div class="product">
+                <div class="icons">
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <img src="New folder/Stylish Sneakers.png" alt="Product 1">
+                <h3>Stylish Sneakers</h3>
+                <p>Comfortable & trendy footwear.</p>
+                <div class="price">$89.99</div>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+
+            <div class="product">
+                <div class="icons">
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <img src="New folder/Bluetooth Speaker.png" alt="Product 2">
+                <h3>Bluetooth Speaker</h3>
+                <p>Crystal-clear sound quality.</p>
+                <div class="price">$49.99</div>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+
+            <div class="product">
+                <div class="icons">
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <img src="New folder/Fashion Sunglasses.png" alt="Product 3">
+                <h3>Fashion Sunglasses</h3>
+                <p>Stylish & UV protection.</p>
+                <div class="price">$29.99</div>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+
+            <div class="product">
+                <div class="icons">
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <img src="New folder/Smartphone 2025.png" alt="Product 4">
+                <h3>Smartphone 2025</h3>
+                <p>Latest model with AI features.</p>
+                <div class="price">$799.99</div>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="Container flex_cen">
+        <div class="banner-section flex_container">
+            <div class="banner">
+                <img src="New folder/image1.png" alt="Banner 1">
+                <div class="banner-content">
+                    <h2 style="color:white">🔥 Limited Time Offer!</h2>
+                    <p>Get up to 50% off on top brands.</p>
+                    <a href="#" class="btn">Shop Now</a>
+                </div>
+            </div>
+
+            <div class="banner">
+                <img src="New folder/new Collection.png" alt="Banner 2">
+                <div class="banner-content">
+                    <h2>🌟 New Collection</h2>
+                    <p>Trendy & stylish outfits available.</p>
+                    <a href="#" class="btn">Explore Now</a>
+                </div>
+            </div>
+
+            <div class="banner">
+                <img src="New folder/Weekend sale.png" alt="Banner 3">
+                <div class="banner-content">
+                    <h2>🎉 Weekend Sale</h2>
+                    <p>Extra 20% off on all electronics.</p>
+                    <a href="#" class="btn">Grab Deal</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🛍️ Categories Overview</h2>
+        <div class="category-list">
+            <div class="category tilt" data-tilt>
+                <img src="New folder/young-woman-with-shopping-bags-beautiful-dress_1303-17550-removebg-preview.png"
+                    alt="Clothing">
+                <h3>Fashion</h3>
+                <p>Trendy outfits and accessories.</p>
+                <a href="#" class="btn">Explore</a>
+            </div>
+
+            <div class="category tilt" data-tilt>
+                <img src="New folder/electronic.png" alt="Electronics">
+                <h3>Electronics</h3>
+                <p>Latest gadgets and tech gear.</p>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+
+            <div class="category tilt" data-tilt>
+                <img src="New folder/home.png" alt="Home & Living">
+                <h3>Home & Living</h3>
+                <p>Decor, furniture & essentials.</p>
+                <a href="#" class="btn">Discover</a>
+            </div>
+
+            <div class="category tilt" data-tilt>
+                <img src="New folder/beauty.png" alt="Beauty">
+                <h3>Beauty</h3>
+                <p>Skincare & cosmetics.</p>
+                <a href="#" class="btn">Check Out</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        VanillaTilt.init(document.querySelectorAll(".tilt"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5
+        });
+    </script>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div class="footer-logo">KUBRA</div>
+                <p>Your favorite online shopping destination.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+
+            <div class="newsletter">
+                <h3>Subscribe to our Newsletter</h3>
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
+            </div>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            &copy; 2025 ShopEase. All rights reserved.
+        </div>
+    </footer>
 </body>
+
 </html>
