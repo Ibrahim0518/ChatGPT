@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermarket Homepage</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+
+body {
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #222222);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff5733;
+        }
+        .nav-link {
+            font-size: 18px;
+            color: #333;
+        }
+        .nav-link:hover {
+            color: #ff5733;
+        }
+        .search-bar {
+            width: 100%;
+            max-width: 300px;
+        }
+        .btn-primary {
+            background-color: #ff5733;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #e64a19;
+        }
+        .icon {
+            font-size: 22px;
+            color: #ff5733;
+            margin-left: 15px;
+        }
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        @media (max-width: 768px) {
+            .search-bar {
+                width: 100%;
+            }
+            .carousel-caption {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-light shadow">
+    <div class="container">
+        <a class="navbar-brand" href="#">SuperMarket</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Deals</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+            <form class="d-flex me-lg-3 my-2 my-lg-0">
+                <input class="form-control search-bar" type="search" placeholder="Search...">
+                <button class="btn btn-primary ms-2" type="submit">Search</button>
+            </form>
+            <div class="d-flex align-items-center">
+                <a href="#" class="icon"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="icon"><i class="fas fa-user"></i></a>
+                <a href="#" class="btn btn-primary ms-3">Login / Signup</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Carousel -->
+<div id="supermarketCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#supermarketCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#supermarketCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#supermarketCarousel" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="images/banner1.jpg" class="d-block w-100" alt="Supermarket">
+            <div class="carousel-caption">
+                <h3>Fresh Groceries Every Day</h3>
+                <p>Get the best quality products at the best prices.</p>
+                <a href="#" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="images/banner1.jpg" class="d-block w-100" alt="Fresh Produce">
+            <div class="carousel-caption">
+                <h3>Organic & Fresh Produce</h3>
+                <p>Farm-fresh vegetables and fruits available now.</p>
+                <a href="#" class="btn btn-primary">Explore More</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="images/banner1.jpg" class="d-block w-100" alt="Supermarket Deals">
+            <div class="carousel-caption">
+                <h3>Exclusive Discounts & Offers</h3>
+                <p>Save big on your daily essentials!</p>
+                <a href="#" class="btn btn-primary">Grab Deals</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#supermarketCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#supermarketCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- Card Section -->
+<div class="product-container flex_container">
+    <div class="product-card">
+        <img src="images/produc1.jpg" alt="Product">
+        <h4>Product 1</h4>
+        <p>$10.00</p>
+    </div>
+    <div class="product-card">
+        <img src="images/produc1.jpg" alt="Product">
+        <h4>Product 2</h4>
+        <p>$12.00</p>
+    </div>
+    <div class="product-card">
+        <img src="images/produc1.jpg" alt="Product">
+        <h4>Product 3</h4>
+        <p>$15.00</p>
+    </div>
+    <div class="product-card">
+        <img src="images/produc1.jpg" alt="Product">
+        <h4>Product 3</h4>
+        <p>$15.00</p>
+    </div>
+    <div class="product-card">
+        <img src="images/produc1.jpg" alt="Product">
+        <h4>Product 3</h4>
+        <p>$15.00</p>
+    </div>
+    <div class="product-card">
+        <img src="images/produc1.jpg" alt="Product">
+        <h4>Product 3</h4>
+        <p>$15.00</p>
+    </div>
+    <div class="product-card">
+        <img src="images/produc1.jpg" alt="Product">
+        <h4>Product 3</h4>
+        <p>$15.00</p>
+    </div>
+    <div class="product-card">
+        <img src="images/produc1.jpg" alt="Product">
+        <h4>Product 3</h4>
+        <p>$15.00</p>
+    </div>
+    <div class="product-card">
+        <img src="images/produc1.jpg" alt="Product">
+        <h4>Product 3</h4>
+        <p>$15.00</p>
+    </div>
+</div>
+<!-- Card Section  -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
