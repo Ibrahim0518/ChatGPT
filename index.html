@@ -245,13 +245,15 @@
         }
 
 
+
+        
         /* Swiper Container */
         .swiper {
             width: 100%;
             max-width: 1366px;
             height: 60vh;
             margin: 0px auto;
-            border-radius: 15px;
+            /* border-radius: 15px; */
             overflow: hidden;
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
         }
@@ -270,18 +272,22 @@
         /* Custom Slide Backgrounds */
         .slide1 {
             background: url("New folder/banner1.png") center/cover no-repeat;
+            /* background-size:100%; */
         }
 
         .slide2 {
             background: url("New folder/banner2.png") center/cover no-repeat;
+            /* background-size:100%; */
         }
 
         .slide3 {
             background: url("New folder/banner3.png") center/cover no-repeat;
+            /* background-size:100%; */
         }
 
         .slide4 {
             background: url("New folder/banner4.png") center/cover no-repeat;
+            /* background-size:100%; */
         }
 
         /* Linear Gradient Backgrounds */
@@ -325,9 +331,14 @@
             }
         }
 
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 400px) {
             .swiper {
-                height: 40vh;
+                height: 20vh !important;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .swiper {
+                height: 30vh !important;
             }
         }
 
@@ -883,7 +894,7 @@
         </div>
 
         <div class="copyright">
-            &copy; 2025 ShopEase. All rights reserved.
+            &copy; 2025 Kubra. All rights reserved.
         </div>
     </footer>
 </body>
