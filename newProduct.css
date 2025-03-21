@@ -518,6 +518,14 @@ footer {
 
 @media (max-width:380px) {
     .banner-section {
-        margin:0 !important;
+        margin: 0 !important;
     }
+}
+
+.banner:hover h2,
+.banner:hover p {
+    opacity: 1;
+    transform: translateY(0);
+    color: #060606;
+    font-weight: 600;
 }
