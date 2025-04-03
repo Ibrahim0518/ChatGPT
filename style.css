@@ -33,3 +33,7 @@
     font-size: 14px;
     color: #777;
 }
+
+.banner1:hover > .ops{
+    filter: brightness(0.6);
+}
